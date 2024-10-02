@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 const page = () => {
 
-  const router = useRouter()
+  const router = useRouter() 
   const [user, setUser] = useState({
     email: "",
     password: "",
