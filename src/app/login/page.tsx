@@ -27,6 +27,15 @@ const page = () => {
     }
   }
 
+  useEffect(() => {
+    if (user.email.length > 0 && user.password.length > 0) {
+      setButtonDisabled(false)
+    }
+    else {
+      setButtonDisabled(true)
+    }
+  }, [user])
+
   return (
     <div className='flex flex-col items-center justify-center min-h-screen py-2'>
       <h1>{loading ? "processing" : "Login"}</h1>
