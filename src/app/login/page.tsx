@@ -2,6 +2,8 @@
 import React, {useState, useEffect} from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import axios from 'axios'
+import toast from 'react-hot-toast'
 
 const page = () => {
 
@@ -14,7 +16,15 @@ const page = () => {
   const [loading, setLoading] = useState(false)
 
   const onLogin = async()=>{
-
+    try {
+      setLoading(true)
+      const response = await axios.post('/api/users/login', user)
+      console.log("user login successfully", response.data)
+      router.push("/profile")
+    } catch (error:any) {
+      console.log(error.message, "error while login the user")
+      toast.error(error.message)
+    }
   }
 
   return (
