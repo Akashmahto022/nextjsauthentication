@@ -1,7 +1,6 @@
 'use client'
 
 import axios from 'axios'
-import { get } from 'http'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
