@@ -58,7 +58,7 @@ const page = () => {
         onChange={(e) => setUser({ ...user, password: e.target.value })}
         placeholder='password'
       />
-      <button onClick={onLogin} className='p-2 border border-gray-300 rounded-lg mb-4 focus:border-gray-600'>{buttonDisabled ? "No signup" : "Signup"}</button>
+      <button onClick={onLogin} className='p-2 border border-gray-300 rounded-lg mb-4 focus:border-gray-600'>{buttonDisabled ? "No login" : "Login"}</button>
       <Link href={"/signup"}>Visit SignUp Page</Link>
     </div>
   )

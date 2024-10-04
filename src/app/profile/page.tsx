@@ -1,10 +1,12 @@
 'use client'
 
 import axios from 'axios'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
 const page = () => {
+  const router = useRouter()
   const [user , setUser] = useState([])
 
   const getProfile = async()=>{
@@ -17,6 +19,16 @@ const page = () => {
     }
   }
 
+  const logout = async()=>{
+    try {
+      const response = await axios.get('/api/users/logout')
+      toast.success("logout successfully")
+      router.push('/login')
+    } catch (error:any) {
+      console.log(error.message)
+    }
+  }
+
   useEffect(()=>{
     getProfile()
   },[])
@@ -26,10 +38,11 @@ const page = () => {
       {
         user && (
           <div className=''>
-          <h2 className='text-4xl'>User Name: {user.username}</h2>
-          <h2 className='text-4xl'>Email: {user.email}</h2>
-          <h2 className='text-4xl'>id: {user._id}</h2>
+          <h2 className='text-4xl m-8'>User Name: <span className='bg-slate-600 p-2 rounded-md'> {user.username}</span></h2>
+          <h2 className='text-4xl m-8'>Email: <span className='bg-slate-600 p-2 rounded-md'>{user.email}</span></h2>
+          <h2 className='text-4xl m-8'>id: <span className='bg-slate-600 p-2 rounded-md'>{user._id}</span></h2>
 
+          <button onClick={logout} className='bg-blue-700 rounded-lg p-3 font-bold m-8'>Logout</button>
         </div>
         )
       }
